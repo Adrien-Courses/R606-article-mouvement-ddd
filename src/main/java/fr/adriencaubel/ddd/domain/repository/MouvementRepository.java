@@ -17,4 +17,26 @@ public interface MouvementRepository extends JpaRepository<Mouvement, Long> {
         AND m.provider.id = :providerId
         """)
     Integer computeStock(Long articleId, Long providerId);
+
+    @Query(
+            """
+        SELECT SUM(m.quantity)
+        FROM Mouvement m
+        WHERE m.articleId = :articleId
+        AND m.type = 'INPUT'
+        AND m.provider.id = :providerId
+            """
+    )
+    int sumInputs(Long articleId, Long providerId);
+
+    @Query(
+            """
+        SELECT SUM(m.quantity)
+        FROM Mouvement m
+        WHERE m.articleId = :articleId
+        AND m.type = 'OUTPUT'
+        AND m.provider.id = :providerId
+            """
+    )
+    int sumOutputs(Long articleId, Long providerId);
 }

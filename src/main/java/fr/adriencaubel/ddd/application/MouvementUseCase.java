@@ -9,10 +9,6 @@ import org.springframework.stereotype.Service;
 public class MouvementUseCase {
     private final MouvementRepository mouvementRepository;
 
-    public int stock(Long articleId, Long providerId) {
-        return mouvementRepository.computeStock(articleId, providerId);
-    }
-
     public void create(Long articleId, Long providerId, int quantity) {
         // fait de la logique métier
     }
