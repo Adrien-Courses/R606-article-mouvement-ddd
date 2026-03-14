@@ -35,4 +35,23 @@ public class Article {
     private List<Mouvement> mouvements = new ArrayList<>();
 
     public Article() {}
+
+    public int stock(Long providerId) {
+
+        int inputs = 0;
+        int outputs = 0;
+
+        for (Mouvement m : mouvements) {
+
+            if (!m.getProvider().getId().equals(providerId))
+                continue;
+
+            if (m.getType() == MouvementType.INPUT)
+                inputs += m.getQuantity();
+            else
+                outputs += m.getQuantity();
+        }
+
+        return inputs - outputs;
+    }
 }
