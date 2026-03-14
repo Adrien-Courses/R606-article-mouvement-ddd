@@ -16,7 +16,7 @@ public class Mouvement {
     private Long id;
 
     @Column(name = "article_id")
-    private Integer articleId;
+    private Long articleId;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "provider_id")
@@ -30,4 +30,10 @@ public class Mouvement {
     private LocalDateTime date;
 
     public Mouvement() {}
+
+    public Mouvement(Long articleId, MouvementType type, Integer quantity) {
+        this.articleId = articleId;
+        this.type = type;
+        this.quantity = quantity;
+    }
 }
