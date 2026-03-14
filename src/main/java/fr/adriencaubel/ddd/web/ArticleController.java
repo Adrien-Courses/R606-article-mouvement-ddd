@@ -1,6 +1,6 @@
 package fr.adriencaubel.ddd.web;
 
-import fr.adriencaubel.ddd.application.ArticleUseCase;
+import fr.adriencaubel.ddd.application.MouvementUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class ArticleController {
 
-    private final ArticleUseCase articleUseCase;
+    private final MouvementUseCase mouvementUseCase;
 
     @GetMapping("{id}/stock")
     public int stock(@PathVariable("id") Long id, @RequestParam("providerId") Long providerId) {
-        return articleUseCase.stock(id, providerId);
+        return mouvementUseCase.stock(id, providerId);
     }
 }

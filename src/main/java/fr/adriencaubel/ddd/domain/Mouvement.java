@@ -15,9 +15,8 @@ public class Mouvement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "article_id")
-    private Article article;
+    @Column(name = "article_id")
+    private Integer articleId;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "provider_id")
