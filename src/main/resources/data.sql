@@ -25,3 +25,9 @@ INSERT INTO mouvement (article_id, provider_id, type, quantity, date) VALUES
                                                                           (3,3,'INPUT',80,'2026-03-12 14:45:00'),
                                                                           (1,1,'OUTPUT',5,'2026-03-13 10:00:00'),
                                                                           (2,2,'OUTPUT',10,'2026-03-13 16:20:00');
+
+INSERT INTO stock (article_id, provider_id, quantity, version) VALUES
+                                                                   (1,1,45,0),
+                                                                   (1,2,30,0),
+                                                                   (2,2,90,0),
+                                                                   (3,3,80,0);

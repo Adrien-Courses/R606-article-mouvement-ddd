@@ -1,4 +1,5 @@
 DROP TABLE IF EXISTS mouvement;
+DROP TABLE IF EXISTS stock;
 DROP TABLE IF EXISTS article_provider;
 DROP TABLE IF EXISTS provider;
 DROP TABLE IF EXISTS article;
@@ -44,4 +45,25 @@ CREATE TABLE mouvement (
                            CONSTRAINT fk_mouvement_provider
                                FOREIGN KEY (provider_id)
                                    REFERENCES provider(id)
+);
+
+CREATE TABLE stock (
+                       id BIGINT AUTO_INCREMENT PRIMARY KEY,
+                       article_id BIGINT NOT NULL,
+                       provider_id BIGINT NOT NULL,
+                       quantity INT NOT NULL,
+                       version BIGINT NOT NULL,
+
+                       CONSTRAINT uq_stock_article_provider
+                           UNIQUE (article_id, provider_id),
+
+                       CONSTRAINT fk_stock_article
+                           FOREIGN KEY (article_id)
+                               REFERENCES article(id)
+                               ON DELETE CASCADE,
+
+                       CONSTRAINT fk_stock_provider
+                           FOREIGN KEY (provider_id)
+                               REFERENCES provider(id)
+                               ON DELETE CASCADE
 );

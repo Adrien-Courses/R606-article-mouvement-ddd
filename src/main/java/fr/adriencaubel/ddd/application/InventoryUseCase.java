@@ -1,7 +1,7 @@
 package fr.adriencaubel.ddd.application;
 
 import fr.adriencaubel.ddd.domain.Stock;
-import fr.adriencaubel.ddd.domain.repository.MouvementRepository;
+import fr.adriencaubel.ddd.domain.repository.StockRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -9,13 +9,9 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class InventoryUseCase {
 
-    private final MouvementRepository repository;
+    private final StockRepository stockRepository;
 
     public Stock stock(Long articleId, Long providerId) {
-
-        int inputs = repository.sumInputs(articleId, providerId);
-        int outputs = repository.sumOutputs(articleId, providerId);
-
-        return new Stock(inputs, outputs);
+        return stockRepository.findByArticleIdAndProviderId(articleId, providerId).orElseThrow();
     }
 }
